@@ -75,5 +75,3 @@ relevant variables.
       - Data visualizations and conclusions
   - Week 3 (Nov 28 - Dec 4):
       - Report, website and screencast
-
-aaa
