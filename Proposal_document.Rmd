@@ -1,6 +1,6 @@
 ---
 title: "Proposal_document"
-author: "YucongJiang"
+author: "YucongJiang, WeiRan Zhang, Qi Lu, Yuning Wang, Aiming Liu"
 date: "2019-11-4"
 output: github_document
 ---
@@ -8,15 +8,15 @@ output: github_document
 
 ## The group members
 
-* Yucong Jiang yj2581
+* Yucong Jiang (yj2581)
 
-* WeiRan Zhang wz2506
+* WeiRan Zhang (wz2506)
 
-* Qi Lu ql2370
+* Qi Lu (ql2370)
 
-* Yuning Wang yw3438
+* Yuning Wang (yw3438)
 
-* Aiming Liu al3998
+* Aiming Liu (al3998)
 
 ## The tentative project title
  
@@ -24,10 +24,25 @@ output: github_document
 
 ## The motivation for this project
 
-  Mental illnesses are conditions that affect a person’s thinking, feeling, mood or behavior, such as depression, anxiety or bipolar disorder. 
-  Mental health is an important component of overall health.Mental health problems can increases the risk for many types of physical health problems,for example diabetes,cancer,obesity,heart disease and so on. Similarly, the presence of chronic physical health problems can also increase the risk for mental health problems.
+ + Mental illnesses are conditions that affect a person’s thinking, feeling, mood or behavior, such as depression, anxiety or bipolar disorder.  
+  
+  
+ + Mental health is an important component of overall health.Mental health problems can increases the risk for many types of physical health problems,for example diabetes,cancer,obesity,heart disease and so on. Similarly, the presence of chronic physical health problems can also increase the risk for mental health problems.
 
 ## The intended final products
-The anticipated data sources
-The planned analyses / visualizations / coding challenges
-The planned timeline
+
+ + Website with words, plots and visualizaiton tools to show our results of analyses
+
+ + Screencast to introduce our work
+
+## The anticipated data sources
+
+We plan to use [500 Cities: Local Data for Better Health, 2018 release](https://chronicdata.cdc.gov/500-Cities/500-Cities-Local-Data-for-Better-Health-2018-relea/6vp6-wxuq/data), especially focus on the measure "Mental health not good for >=14 days among adults aged >=18 Years"
+
+## The planned analyses / visualizations / coding challenges
+
+We plan to create a heatmap showing the geographic distribution of mental health problem in U.S.
+
+ + Statistic models detecting the potential risk factors associated with mental health problem
+
+## The planned time line
