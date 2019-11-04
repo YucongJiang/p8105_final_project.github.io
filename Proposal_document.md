@@ -65,3 +65,13 @@ relevant variables.
     to analysis association between mental health and other variables.
 
 ## The planned time line
+
+  - Week 0 (Nov 7 - 13):
+      - Writing proposal after review meeting
+      - Finding enough data sources
+  - Week 1 (Nov 14 - 20):
+      - Data exploration and analyses
+  - Week 2 (Nov 21 - 27):
+      - Data visualizations and conclusions
+  - Week 3 (Nov 28 - Dec 4):
+      - Report, website and screencast
