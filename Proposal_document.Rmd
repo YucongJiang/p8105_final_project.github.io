@@ -16,7 +16,7 @@ output: github_document
 
 * Yuning Wang yw3438
 
-* Aining Liu al3998
+* Aiming Liu al3998
 
 ## The tentative project title
 
