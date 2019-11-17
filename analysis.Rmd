@@ -29,7 +29,7 @@ cvrisk =
 
 ```
 
-Column {data-width=650}
+Column {data-width=500}
 -----------------------------------------------------------------------
 
 ###  Mental health conditions in different states
@@ -55,18 +55,48 @@ state_data %>%
   )
 ```
 
-Column {data-width=350}
+Column {data-width=500}
 -----------------------------------------------------------------------
 
-### Chart B
+### Mental health conditions in Hawaii 
 
 ```{r}
-
+low_city_data = cvrisk %>% 
+  filter(state_desc == "Hawaii") %>% 
+  extract(geo_location, c("Latitude", "Longitude"), "\\(([^,]+), ([^)]+)\\)") %>% 
+  janitor::clean_names() %>% 
+  plot_ly(x = ~latitude, y = ~longitude, 
+          color = ~data_value, type = "scatter", 
+          mode = "markers", alpha = .5) %>%
+  layout(
+    title = "Prevalence of Bad Mental Health in Hawaii",
+    xaxis = list(title = "Latitude"),
+    yaxis = list(title = "Longitude"),
+    margin = list(b = 170)
+  )
+    
+ 
+low_city_data 
 ```
 
-### Chart C
+### Mental health conditions in Ohio 
 
 ```{r}
-
+high_city_data = cvrisk %>% 
+  filter(state_desc == "Ohio") %>% 
+  extract(geo_location, c("Latitude", "Longitude"), "\\(([^,]+), ([^)]+)\\)") %>% 
+  janitor::clean_names() %>% 
+  plot_ly(x = ~latitude, y = ~longitude, 
+          color = ~data_value, type = "scatter", 
+          mode = "markers", alpha = .5) %>%
+  layout(
+    title = "Prevalence of Bad Mental Health in Ohio",
+    xaxis = list(title = "Latitude"),
+    yaxis = list(title = "Longitude"),
+    margin = list(b = 170)
+  )
+    
+ 
+high_city_data
 ```
 
