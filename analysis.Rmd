@@ -7,8 +7,6 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-
 library(flexdashboard)
 library(tidyverse)
 library(patchwork)
@@ -17,8 +15,6 @@ library(viridis)
 
 library(plotly)
 ```
-
-
 
 ```{r message=FALSE}
 # read in the data
@@ -33,10 +29,10 @@ cvrisk =
 
 ```
 
-Column {data-width=550}
+Column {data-width=650}
 -----------------------------------------------------------------------
 
-### Mental health conditions in different states
+###  Mental health conditions in different states
 
 ```{r}
 state_data = cvrisk %>% 
