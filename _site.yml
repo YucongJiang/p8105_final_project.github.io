@@ -4,7 +4,7 @@ navbar:
   title: "Home"
   right:
     - text: "Analysis"
-      href: about.html
+      href: analysis.html
     - text: "Maps"
       href: plots.html
     - text: "Project Report"

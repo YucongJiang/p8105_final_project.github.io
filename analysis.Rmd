@@ -1,0 +1,63 @@
+---
+title: "The prevalence in different cities"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(flexdashboard)
+library(tidyverse)
+library(patchwork)
+library(ggridges)
+library(viridis)
+
+library(plotly)
+```
+
+
+
+```{r message=FALSE}
+# read in the data
+cvrisk_url = "https://data.cdc.gov/api/views/6vp6-wxuq/rows.csv?accessType=DOWNLOAD"
+cvrisk = 
+  read.csv(url(cvrisk_url)) %>% 
+  janitor::clean_names() %>% 
+  as_tibble() %>% 
+  mutate(measure = recode(measure,
+                          "Mental health not good for >=14 days among adults aged >=18 Years" = "mental health") ) %>% 
+  filter(measure == "mental health")
+
+```
+
+Column {data-width=550}
+-----------------------------------------------------------------------
+
+### Mental health conditions in different states
+
+```{r}
+state_data = cvrisk %>% 
+  group_by(state_desc) %>% 
+  drop_na() %>% 
+  summarize(state_prevalence = mean(data_value)) %>% 
+  distinct() %>% 
+  filter(state_desc != "United States") %>% 
+  mutate(state_desc = fct_reorder(state_desc, state_prevalence))
+
+#draw an interactive bar plot
+state_data %>% 
+   plot_ly(x = ~state_desc, y = ~state_prevalence, 
+          color = ~state_desc, type = "bar") %>% 
+  layout(
+    title = "Prevalence of Bad Mental Health in States",
+    xaxis = list(title = "States"),
+    yaxis = list(title = "Crude Prevenlence (%)"),
+    margin = list(b = 170)
+  )
+```
+
+
+
