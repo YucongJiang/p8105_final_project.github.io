@@ -1,0 +1,70 @@
+---
+title: "Linear model and heatmap"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(patchwork)
+library(ggridges)
+library(viridis)
+library(plotly)
+```
+
+```{r linear_model, message = FALSE, warning = FALSE}
+
+sent <- "Mental health not good for >=14 days among adults aged >=18 Years"
+
+# mental_url = "https://data.cdc.gov/api/views/6vp6-wxuq/rows.csv?accessType=DOWNLOAD"
+# mental_state = 
+#   read.csv(url(mental_url)) %>% 
+#   janitor::clean_names() %>% 
+#   as_tibble() %>% 
+#   filter(measure == sent & !is.na(data_value)) %>% 
+#   group_by(stateabbr) %>% 
+#   summarize(mean_crd = mean(data_value))
+
+mental_state <- read_csv("~/Courses/P8105 Data Science/data/500_Cities__Local_Data_for_Better_Health__2018_release.csv") %>%
+  filter(Measure == sent & !is.na(Data_Value)) %>% 
+  group_by(StateAbbr) %>% 
+  summarize(mean_crd = mean(Data_Value)) %>%
+  rename(state = StateAbbr)
+
+# There is only data from 2016
+income <- read_csv("data/income.csv") %>% select(-year_2015)
+
+state_rela <- left_join(mental_state, income)
+
+state_lm_2016 <- lm(mean_crd ~ year_2016, data = state_rela)
+
+summary(state_lm_2016)
+```
+
+```{r plotting, echo = FALSE}
+ggplot(state_rela, aes(x = year_2016, y = mean_crd)) +
+  geom_point() + geom_smooth(method = lm) +
+  labs(
+    title = "Median Household Income vs. Prevalence of Bad Mental Health in 2016",
+    x = "Median Household Income",
+    y = "Crude Prevalence"
+  )
+
+```
+
+```{r heatmap}
+
+# install.packages("usmap")
+library(usmap)
+
+plot_usmap(data = state_rela, values = "mean_crd") +
+  scale_fill_continuous(
+    low = "white", high = "red", name = "Crude Prevalence (2016)"
+    )
+```
+
+
