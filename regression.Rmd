@@ -8,8 +8,24 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+library(flexdashboard)
+library(tidyverse)
+library(patchwork)
+library(ggridges)
+library(viridis)
+
+library(plotly)
 ```
 
-## R Markdown
+```{r}
+# read in the data
+mental_url = "https://data.cdc.gov/api/views/6vp6-wxuq/rows.csv?accessType=DOWNLOAD"
+mental = 
+  read.csv(url(mental_url)) %>% 
+  janitor::clean_names() %>% 
+  as_tibble() %>% 
+  filter(measure == "Mental health not good for >=14 days among adults aged >=18 Years" | measure == "Obesity among adults aged >=18 Years" | measure == "Diagnosed diabetes among adults aged >=18 Years" | measure == "Binge drinking among adults aged >=18 Years" | measure == "Cancer (excluding skin cancer) among adults aged >=18 Years ")
+```
+
+##
 
