@@ -1,5 +1,5 @@
 ---
-title: "The prevalence in different cities"
+title: "Analysis"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -17,86 +17,132 @@ library(plotly)
 ```
 
 ```{r message=FALSE}
-# read in the data
-mental_url = "https://data.cdc.gov/api/views/6vp6-wxuq/rows.csv?accessType=DOWNLOAD"
-mental = 
-  read.csv(url(mental_url)) %>% 
-  janitor::clean_names() %>% 
-  as_tibble() %>% 
-  mutate(measure = recode(measure,
-                          "Mental health not good for >=14 days among adults aged >=18 Years" = "mental health") ) %>% 
-  filter(measure == "mental health")
-
+health_data = read_csv("./data/health data.csv") %>% 
+  select(-X1)
 ```
 
 Column {data-width=500}
 -----------------------------------------------------------------------
 
-###  Mental health conditions in different states
+###  Obesity conditions in different states
 
 ```{r}
-state_data = mental %>% 
+state_data_ob = health_data %>%
+  filter(measure == "obesity") %>% 
+  drop_na(data_value) %>% 
   group_by(state_desc) %>% 
-  drop_na() %>% 
   summarize(state_prevalence = mean(data_value)) %>% 
-  distinct() %>% 
   filter(state_desc != "United States") %>% 
   mutate(state_desc = fct_reorder(state_desc, state_prevalence))
 
 #draw an interactive bar plot
-state_data %>% 
+state_data_ob %>% 
    plot_ly(x = ~state_desc, y = ~state_prevalence, 
           color = ~state_desc, type = "bar") %>% 
   layout(
-    title = "Prevalence of Bad Mental Health in States",
+    title = "Prevalence of Obesity in States",
     xaxis = list(title = "States"),
     yaxis = list(title = "Crude Prevenlence (%)"),
     margin = list(b = 170)
   )
 ```
 
+###  Diabetes conditions in different states
+
+```{r}
+state_data_dia = health_data %>%
+  filter(measure == "diabetes") %>% 
+  drop_na(data_value) %>%
+  select(data_value,state_desc,measure) %>% 
+  group_by(state_desc) %>% 
+  filter(state_desc != "United States") 
+
+#draw an interactive bar plot
+state_data_dia %>% 
+   plot_ly( y = ~data_value, 
+          color = ~state_desc, type = "box") %>% 
+  layout(
+    title = "Prevalence of Diabetes in States",
+    xaxis = list(title = "States"),
+    yaxis = list(title = "Crude Prevenlence (%)"),
+    margin = list(b = 170)
+  )
+
+```
+
+
 Column {data-width=500}
 -----------------------------------------------------------------------
 
-### Mental health conditions in Hawaii 
+### Drinking conditions in different cities
 
 ```{r}
-low_city_data = mental %>% 
-  filter(state_desc == "Hawaii") %>% 
+drink_data = health_data %>%
+  filter(measure == "drink",state_desc != "United States") %>% 
   extract(geo_location, c("Latitude", "Longitude"), "\\(([^,]+), ([^)]+)\\)") %>% 
   janitor::clean_names() %>% 
-  plot_ly(x = ~latitude, y = ~longitude, 
+  select(latitude, longitude, data_value, measure) %>% 
+  mutate(latitude = as.integer(latitude),
+         longitude = as.integer(longitude)) %>% 
+  mutate(text_label = str_c("Prevalence(%):", data_value)) %>% 
+  plot_ly(x = ~longitude, y = ~latitude, 
           color = ~data_value, type = "scatter", 
-          mode = "markers", alpha = .5) %>%
+          mode = "markers", text = ~text_label,alpha = .5) %>%
   layout(
-    title = "Prevalence of Bad Mental Health in Hawaii",
-    xaxis = list(title = "Latitude"),
-    yaxis = list(title = "Longitude"),
-    margin = list(b = 170)
+    title = "Prevalence of Binge Drinking in United States",
+    xaxis = list(title = "Longitude"),
+    yaxis = list(title = "Latitude")
   )
     
  
-low_city_data 
+drink_data
 ```
 
-### Mental health conditions in Ohio 
+### Cancer conditions in different cities
 
 ```{r}
-high_city_data = mental %>% 
-  filter(state_desc == "Ohio") %>% 
+cancer_data = health_data %>%
+  filter(measure == "cancer",state_desc != "United States") %>% 
   extract(geo_location, c("Latitude", "Longitude"), "\\(([^,]+), ([^)]+)\\)") %>% 
   janitor::clean_names() %>% 
-  plot_ly(x = ~latitude, y = ~longitude, 
+  select(latitude, longitude, data_value, measure) %>% 
+  mutate(latitude = as.integer(latitude),
+         longitude = as.integer(longitude)) %>% 
+  mutate(text_label = str_c("Prevalence(%):", data_value)) %>% 
+  plot_ly(x = ~longitude, y = ~latitude, 
           color = ~data_value, type = "scatter", 
-          mode = "markers", alpha = .5) %>%
+          mode = "markers",text = ~text_label,alpha = .5) %>%
   layout(
-    title = "Prevalence of Bad Mental Health in Ohio",
-    xaxis = list(title = "Latitude"),
-    yaxis = list(title = "Longitude"),
-    margin = list(b = 170)
+    title = "Prevalence of Cancer in United States",
+    xaxis = list(title = "Longitude"),
+    yaxis = list(title = "Latitude")
   )
     
  
-high_city_data
+cancer_data
+```
+
+### Sleeping conditions in different cities
+
+```{r}
+sleep_data = health_data %>%
+  filter(measure == "sleeping",state_desc != "United States") %>% 
+  extract(geo_location, c("Latitude", "Longitude"), "\\(([^,]+), ([^)]+)\\)") %>% 
+  janitor::clean_names() %>% 
+  select(latitude, longitude, data_value, measure) %>% 
+  mutate(latitude = as.integer(latitude),
+         longitude = as.integer(longitude)) %>% 
+  mutate(text_label = str_c("Prevalence(%):", data_value)) %>% 
+  plot_ly(x = ~longitude, y = ~latitude, 
+          color = ~data_value, type = "scatter", 
+          mode = "markers", text = ~text_label,alpha = .5) %>%
+  layout(
+    title = "Condition of Sleeping in United States",
+    xaxis = list(title = "Longitude"),
+    yaxis = list(title = "Latitude")
+  )
+    
+ 
+sleep_data 
 ```
 
