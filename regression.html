@@ -382,12 +382,11 @@ div.tocify {
 
 
 <pre class="r"><code># read in the data
-mental_url = &quot;https://data.cdc.gov/api/views/6vp6-wxuq/rows.csv?accessType=DOWNLOAD&quot;
-mental = 
-  read.csv(url(mental_url)) %&gt;% 
+
+mental = read.csv(&quot;./data/health data.csv&quot;)%&gt;% 
   janitor::clean_names() %&gt;% 
   as_tibble() %&gt;% 
-  filter(measure == &quot;Mental health not good for &gt;=14 days among adults aged &gt;=18 Years&quot; | measure == &quot;Obesity among adults aged &gt;=18 Years&quot; | measure == &quot;Diagnosed diabetes among adults aged &gt;=18 Years&quot; | measure == &quot;Binge drinking among adults aged &gt;=18 Years&quot; | measure == &quot;Cancer (excluding skin cancer) among adults aged &gt;=18 Years &quot;)</code></pre>
+  filter(measure == &quot;mental health&quot; | measure == &quot;obesity&quot; | measure == &quot;diabetes&quot; | measure == &quot;drink&quot; | measure == &quot;cancer&quot;)</code></pre>
 <div id="section" class="section level2">
 <h2></h2>
 </div>
