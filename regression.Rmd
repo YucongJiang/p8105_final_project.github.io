@@ -17,7 +17,7 @@ library(viridis)
 library(plotly)
 ```
 
-```{r}
+```{r, message=FALSE, echo= FALSE}
 # read in the data
 
 mental = read.csv("./data/health data.csv")%>% 
