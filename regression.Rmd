@@ -1,5 +1,5 @@
 ---
-title: "Regression between mental health problems and physical health problem"
+title: "Regression between Mental Health and Physical Health"
 output: 
   html_document:
     toc: true
@@ -19,12 +19,81 @@ library(plotly)
 
 ```{r, message=FALSE, echo= FALSE}
 # read in the data
-
 mental = read.csv("./data/health data.csv")%>% 
   janitor::clean_names() %>% 
   as_tibble() %>% 
-  filter(measure == "mental health" | measure == "obesity" | measure == "diabetes" | measure == "drink" | measure == "cancer")
+  filter(measure == "mental health" | measure == "obesity" | measure == "diabetes" | measure == "drink" | measure == "cancer") 
+
+mental_data = mental %>%
+  filter(measure == "mental health")  
 ```
 
-##
+```{r}
+#deal with data
+total_data = mental %>% 
+  pivot_wider(names_from = measure, city_name, values_from = data_value) %>% 
+  unnest() %>% 
+  drop_na() %>% 
+  group_by(city_name) %>% 
+  summarize(obesity = mean(obesity), drink = mean(drink), diabetes = mean(diabetes), mental_health = mean(`mental health`), cancer = mean(cancer))
 
+
+```
+
+
+### Drink
+```{r, warning=FALSE, echo=FALSE}
+# Drink 
+
+drink_plot = 
+  plot_ly(x = total_data$drink, y = total_data$mental_health, 
+       type = "scatter",
+        mode = "markers",alpha = .5)
+drink_lm = lm(total_data$mental_health ~ total_data$drink, total_data)
+
+drink_plot
+summary(drink_lm)
+
+```
+
+
+### Diabetes
+```{r, warning=FALSE, echo=FALSE}
+# Diabetes
+diabetes_plot = 
+  plot_ly(x = total_data$diabetes, y = total_data$mental_health, 
+       type = "scatter",  color =  "Yellow",
+        mode = "markers",alpha = .5)
+diabetes_lm = lm(total_data$mental_health ~ total_data$diabetes)
+
+diabetes_plot
+summary(diabetes_lm)
+```
+
+
+### Cancer
+```{r, warning=FALSE, echo=FALSE}
+# Cancer
+cancer_plot = 
+  plot_ly(x = total_data$cancer, y = total_data$mental_health, 
+       type = "scatter",
+        mode = "markers",alpha = .5) 
+cancer_lm = lm(total_data$mental_health ~ total_data$cancer)
+
+cancer_plot
+summary(cancer_lm)
+```
+
+
+### Obesity
+```{r, warning=FALSE, echo=FALSE}
+# Obesity
+obe_plot = 
+  plot_ly(x = total_data$obesity, y = total_data$mental_health, 
+       type = "scatter",  color =  "Black",
+        mode = "markers",alpha = .5)
+obe_lm = lm(total_data$mental_health ~ total_data$obesity)
+
+obe_plot
+summary(obe_lm)
+```
