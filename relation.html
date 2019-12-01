@@ -353,6 +353,9 @@ div.tocify {
   <a href="plots.html">Maps</a>
 </li>
 <li>
+  <a href="regression.html">Linear Model</a>
+</li>
+<li>
   <a href="plots.html">Project Report</a>
 </li>
 <li>
@@ -381,7 +384,7 @@ div.tocify {
 </div>
 
 
-<pre class="r"><code>sent &lt;- &quot;Mental health not good for &gt;=14 days among adults aged &gt;=18 Years&quot;
+<pre class="r"><code>sent &lt;- &quot;mental health&quot;
 
 # mental_url = &quot;https://data.cdc.gov/api/views/6vp6-wxuq/rows.csv?accessType=DOWNLOAD&quot;
 # mental_state = 
@@ -392,11 +395,11 @@ div.tocify {
 #   group_by(stateabbr) %&gt;% 
 #   summarize(mean_crd = mean(data_value))
 
-mental_state &lt;- read_csv(&quot;~/Courses/P8105 Data Science/data/500_Cities__Local_Data_for_Better_Health__2018_release.csv&quot;) %&gt;%
-  filter(Measure == sent &amp; !is.na(Data_Value)) %&gt;% 
-  group_by(StateAbbr) %&gt;% 
-  summarize(mean_crd = mean(Data_Value)) %&gt;%
-  rename(state = StateAbbr)
+mental_state &lt;- read_csv(&quot;data/health data.csv&quot;) %&gt;%
+  filter(measure == sent &amp; !is.na(data_value)) %&gt;% 
+  group_by(state_abbr) %&gt;% 
+  summarize(mean_crd = mean(data_value)) %&gt;%
+  rename(state = state_abbr)
 
 # There is only data from 2016
 income &lt;- read_csv(&quot;data/income.csv&quot;) %&gt;% select(-year_2015)
