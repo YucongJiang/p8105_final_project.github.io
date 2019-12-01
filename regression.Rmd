@@ -90,7 +90,7 @@ summary(cancer_lm)
 # Obesity
 obe_plot = 
   plot_ly(x = total_data$obesity, y = total_data$mental_health, 
-       type = "scatter",  color =  "Black",
+       type = "scatter", 
         mode = "markers",alpha = .5)
 obe_lm = lm(total_data$mental_health ~ total_data$obesity)
 
