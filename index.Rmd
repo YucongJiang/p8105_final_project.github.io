@@ -8,11 +8,44 @@ output:
     theme: flatly
 ---
 
+*Yuning Wang (yw3438); Aiming Liu (al3998); Qi Lu (ql2370); Yucong Jiang (yj2581); WeiRan Zhang (wz2506)*
+
 ***
 
-# Analysis of Bad Mental Health Prevalence
+![](mental health.jpg)
 
+# Motivation
+
+  Mental illnesses are conditions that affect a person’s thinking, feeling, mood or behavior, such as depression, anxiety or bipolar disorder.  
+  
+  Mental health is an important component of overall health.Mental health problems can increases the risk for many types of physical health problems,for example diabetes,cancer,obesity,heart disease and so on. Similarly, the presence of chronic physical health problems can also increase the risk for mental health problems.
+
+***
+
+# Dataset
+
+We utilized the [500 Cities: Local Data for Better Health, 2018 release](https://chronicdata.cdc.gov/500-Cities/500-Cities-Local-Data-for-Better-Health-2018-relea/6vp6-wxuq/data) dataset. This dataset includes 2016, 2015 model-based small area estimates for 27 measures of chronic disease related to unhealthy behaviors (5), health outcomes (13), and use of preventive services (9). Data were provided by the Centers for Disease Control and Prevention (CDC), Division of Population Health, Epidemiology and Surveillance Branch. The project was funded by the Robert Wood Johnson Foundation (RWJF) in conjunction with the CDC Foundation.
+
+We were interested in visualizing the mental health situations over United States, so we filtered measure variables related to mental health and possible causes of mental health problems, including diabetes, obesity, cancer, binge drink and sleeping hours. 
+
+Data related to socioeconomic situations of all the states in the United States were also used in analysis the cause of mental health problems.
+
+The current dataset includes prevalence estimates mainly in 2016.
  
+***
+
+# Findings
+
+The risk factors of mental health problems according to the CDC include experiences related to other ongoing (chronic) medical condition. From the results of our analysis, diabetes and obesity have a positive association with mental health problems. However, cancer has a negative association with bad mental health.
+
+Using alcohol is also closely related to mental health conditions according to CDC. Results show that alcohol usage has a negative relationship with mental health problems. Household income also has a negative relationship with bad mental health. However, sleeping has a positive relationship with bad mental health prevalence.
+
+Maps related to prevalence of bad mental health indicated that mental health conditions in middle and western U.S. were better than eastern U.S.. We observed that the sleeping hours of people in the east of United States are less than that of the west. The prevalence of obesity is higher in Mississippi and Michigan, but the prevalence of cancer has little differences among all the cities.
 
 ***
+
+# Overview
+
+
+
 

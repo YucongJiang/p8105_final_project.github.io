@@ -25,9 +25,9 @@ Mental illnesses are conditions that affect a person’s thinking,
 feeling, mood or behavior, such as depression, anxiety or bipolar
 disorder.
 
-Mental health is an important component of overall health.Mental health
+Mental health is an important component of overall health. Mental health
 problems can increases the risk for many types of physical health
-problems,for example diabetes,cancer,obesity,heart disease and so on.
+problems, for example diabetes, cancer,obesity, heart disease and so on.
 Similarly, the presence of chronic physical health problems can also
 increase the risk for mental health problems.
 

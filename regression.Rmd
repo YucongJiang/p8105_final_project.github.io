@@ -22,7 +22,7 @@ library(plotly)
 mental = read.csv("./data/health data.csv")%>% 
   janitor::clean_names() %>% 
   as_tibble() %>% 
-  filter(measure == "mental health" | measure == "obesity" | measure == "diabetes" | measure == "drink" | measure == "cancer") 
+  filter(measure == "mental health" | measure == "obesity" | measure == "diabetes" | measure == "drink" | measure == "cancer" | measure == "sleeping") 
 
 mental_data = mental %>%
   filter(measure == "mental health")  
@@ -35,7 +35,7 @@ total_data = mental %>%
   unnest() %>% 
   drop_na() %>% 
   group_by(city_name) %>% 
-  summarize(obesity = mean(obesity), drink = mean(drink), diabetes = mean(diabetes), mental_health = mean(`mental health`), cancer = mean(cancer))
+  summarize(obesity = mean(obesity), drink = mean(drink), diabetes = mean(diabetes), mental_health = mean(`mental health`), cancer = mean(cancer), sleeping = mean(sleeping))
 
 
 ```
@@ -97,3 +97,18 @@ obe_lm = lm(total_data$mental_health ~ total_data$obesity)
 obe_plot
 summary(obe_lm)
 ```
+
+
+### Sleeping
+```{r}
+#sleeping
+sleep_plot = 
+  plot_ly(x = total_data$sleeping, y = total_data$mental_health, 
+       type = "scatter", 
+        mode = "markers",alpha = .5)
+sleep_lm = lm(total_data$mental_health ~ total_data$sleeping)
+
+sleep_plot
+summary(sleep_lm)
+```
+

@@ -18,7 +18,19 @@ library(plotly)
 
 ```{r message=FALSE}
 health_data = read_csv("./data/health data.csv") %>% 
-  select(-X1)
+  select(-X1) 
+
+city_data = health_data %>% 
+  pivot_wider(names_from = measure, city_name, values_from = data_value) %>% 
+  unnest() %>% 
+  drop_na() %>% 
+  group_by(city_name) %>% 
+  summarize(obesity = mean(obesity), drink = mean(drink), diabetes = mean(diabetes), mental_health = mean(`mental health`), cancer = mean(cancer),sleeping = mean(sleeping)) %>% 
+  pivot_longer(
+    obesity:sleeping,
+    names_to = "measure",
+    values_to = "data_value"
+  )
 ```
 
 Column {data-width=500}
@@ -81,12 +93,16 @@ drink_data = health_data %>%
   filter(measure == "drink",state_desc != "United States") %>% 
   extract(geo_location, c("Latitude", "Longitude"), "\\(([^,]+), ([^)]+)\\)") %>% 
   janitor::clean_names() %>% 
-  select(latitude, longitude, data_value, measure) %>% 
+  select(city_name, latitude, longitude, data_value, measure) %>% 
+  group_by(city_name) %>% 
+  drop_na(data_value) %>% 
+  mutate(m_data_value = mean(data_value)) %>% 
+  distinct() %>% 
   mutate(latitude = as.integer(latitude),
          longitude = as.integer(longitude)) %>% 
-  mutate(text_label = str_c("Prevalence(%):", data_value)) %>% 
+  mutate(text_label = str_c("Prevalence(%):", m_data_value)) %>% 
   plot_ly(x = ~longitude, y = ~latitude, 
-          color = ~data_value, type = "scatter", 
+          color = ~m_data_value, type = "scatter", 
           mode = "markers", text = ~text_label,alpha = .5) %>%
   layout(
     title = "Prevalence of Binge Drinking in United States",
@@ -105,12 +121,16 @@ cancer_data = health_data %>%
   filter(measure == "cancer",state_desc != "United States") %>% 
   extract(geo_location, c("Latitude", "Longitude"), "\\(([^,]+), ([^)]+)\\)") %>% 
   janitor::clean_names() %>% 
-  select(latitude, longitude, data_value, measure) %>% 
+  select(city_name,latitude, longitude, data_value, measure) %>% 
+  group_by(city_name) %>% 
+  drop_na(data_value) %>% 
+  mutate(m_data_value = mean(data_value)) %>% 
+  distinct() %>% 
   mutate(latitude = as.integer(latitude),
          longitude = as.integer(longitude)) %>% 
-  mutate(text_label = str_c("Prevalence(%):", data_value)) %>% 
+  mutate(text_label = str_c("Prevalence(%):", m_data_value)) %>% 
   plot_ly(x = ~longitude, y = ~latitude, 
-          color = ~data_value, type = "scatter", 
+          color = ~m_data_value, type = "scatter", 
           mode = "markers",text = ~text_label,alpha = .5) %>%
   layout(
     title = "Prevalence of Cancer in United States",
@@ -129,12 +149,16 @@ sleep_data = health_data %>%
   filter(measure == "sleeping",state_desc != "United States") %>% 
   extract(geo_location, c("Latitude", "Longitude"), "\\(([^,]+), ([^)]+)\\)") %>% 
   janitor::clean_names() %>% 
-  select(latitude, longitude, data_value, measure) %>% 
+  select(city_name,latitude, longitude, data_value, measure) %>% 
+  group_by(city_name) %>% 
+  drop_na(data_value) %>% 
+  mutate(m_data_value = mean(data_value)) %>% 
+  distinct() %>% 
   mutate(latitude = as.integer(latitude),
          longitude = as.integer(longitude)) %>% 
-  mutate(text_label = str_c("Prevalence(%):", data_value)) %>% 
+  mutate(text_label = str_c("Prevalence(%):", m_data_value)) %>% 
   plot_ly(x = ~longitude, y = ~latitude, 
-          color = ~data_value, type = "scatter", 
+          color = ~m_data_value, type = "scatter", 
           mode = "markers", text = ~text_label,alpha = .5) %>%
   layout(
     title = "Condition of Sleeping in United States",
