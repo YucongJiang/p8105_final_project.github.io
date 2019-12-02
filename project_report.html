@@ -24,6 +24,7 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
@@ -250,6 +251,9 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
 
 
@@ -377,6 +381,14 @@ div.tocify {
 
 <div class="fluid-row" id="header">
 
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
 
 
 <h1 class="title toc-ignore">Linear Regression between Mental Health and Physical Health</h1>
@@ -444,6 +456,7 @@ div.tocify {
 </div>
 <div id="analysis" class="section level2">
 <h2>Analysis</h2>
+<p>First, we read in the dataset, named it as <code>total_data</code> and filtered the variables that we need.</p>
 <p>To make inferences of the relationships between mental health and five variables including obesity, diabetes, drinking, cancer and sleeping which represent the mean prevalence in each cities in the United States in our dataset, we build five linear regression models and plot them. Based on the observations from the five regression models, diabetes and obesity have positive association with mental health. For diabetes, we can see from the plot that there is an positive linear relationship and the regression model is <span class="math inline">\(Y = 0.5985X + 6.7551\)</span>. As for the obesity, we can also see a salient positive relationship and the linear regression model is <span class="math inline">\(Y = 0.26779X + 4.97108\)</span>. The positive relationships of diabetes and mental health and obesity and mental health implies that people who with obesity and diabetes are more likely to have mental health issues. The sleeping variable in our model and plot represents the prevalence of sleeping less than 7 hours, we can see a positive linear relationship between mental health and sleeping which means the cities with more people sleeping less than 7 hours will be more likely to have mental health issues. And the model is <span class="math inline">\(Y_i = 0.33366X + 1.00842\)</span></p>
 <p>However, from the plots of drinking and cancer, we can see a slightly negative relationship. To test if the negative relationship between mental health and drinking is significant or not, we perform a t-test: By using 0.05 significance level, p-value is less than 2e-16, so we can conclude that the negative relationship between mental health and drinking is significant and the regression model is <span class="math inline">\(Y = -0.30765X + 0.03355\)</span>. For the relationship between mental health and cancer, p-value is 0.00149 &lt; 0.05 so we can also conclude that the negative relationship is significant.</p>
 </div>
@@ -483,6 +496,11 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
 
 <script>
 $(document).ready(function ()  {
