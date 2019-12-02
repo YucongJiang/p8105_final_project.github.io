@@ -424,15 +424,6 @@ div.tocify {
 </div>
 <div id="data" class="section level2">
 <h2>Data</h2>
-<<<<<<< HEAD
-<p>The data</p>
-<hr />
-</div>
-<div id="analysis" class="section level2">
-<h2>Analysis</h2>
-<p>To make inferences of the relationships between mental health and five variables including obesity, diabetes, drinking, cancer and sleeping which represent the mean prevalence in each cities in the United States in our dataset, we build five linear regression models and plot them. Based on the observations from the five regression models, diabetes and obesity have positive association with mental health. For diabetes, we can see from the plot that there is an positive linear relationship and the regression model is <span class="math inline">\(Y = 0.5985X + 6.7551\)</span>. As for the obesity, we can also see a salient positive relationship and the linear regression model is <span class="math inline">\(Y = 0.26779X + 4.97108\)</span>. The positive relationships of diabetes and mental health and obesity and mental health implies that people who with obesity and diabetes are more likely to have mental health issues. The sleeping variable in our model and plot represents the prevalence of sleeping less than 7 hours, we can see a positive linear relationship between mental health and sleeping which means the cities with more people sleeping less than 7 hours will be more likely to have mental health issues. And the model is <span class="math inline">\(Y_i = 0.33366X + 1.00842\)</span></p>
-<p>However, from the plots of drinking and cancer, we can see a slightly negative relationship. To test if the negative relationship between mental health and drinking is significant or not, we perform a t-test: By using 0.05 significance level, p-value is less than 2e-16, so we can conclude that the negative relationship between mental health and drinking is significant and the regression model is <span class="math inline">\(Y = -0.30765X + 0.03355\)</span>. For the relationship between mental health and cancer, p-value is 0.00149 &lt; 0.05 so we can also conclude that the negative relationship is significant.</p>
-=======
 <p>In order to do the analysis, we utilized the <a href="https://chronicdata.cdc.gov/500-Cities/500-Cities-Local-Data-for-Better-Health-2018-relea/6vp6-wxuq/data">500 Cities: Local Data for Better Health, 2018 release</a> dataset. This dataset includes 2016, 2015 model-based small area estimates for 27 measures of chronic disease related to unhealthy behaviors (5), health outcomes (13), and use of preventive services (9). Data were provided by the Centers for Disease Control and Prevention (CDC), Division of Population Health, Epidemiology and Surveillance Branch. The project was funded by the Robert Wood Johnson Foundation (RWJF) in conjunction with the CDC Foundation. Other datas about <a href="https://en.wikipedia.org/wiki/List_of_U.S._states_and_territories_by_income">U.S. states and territories’ income</a>, <a href="https://en.wikipedia.org/wiki/List_of_U.S._states_and_territories_by_educational_attainment">U.S. states and territories’ educational attainment</a> and <a href="https://www.census.gov/newsroom/facts-for-features/2016/cb16-ff01.html">U.S. population race</a> were also used in analyzing the cause of mental health problems.</p>
 <p>We downloaded the datasets and filtered the variables that we were interested in and established a new dataset. The risk factors that we are interested in include:</p>
 <ul>
@@ -449,7 +440,12 @@ div.tocify {
 <ul>
 <li><strong>MENTAL HEALTH</strong>: Mental health not good for &gt;=14 days among adults aged &gt;=18 Years</li>
 </ul>
->>>>>>> 2c9e95ae164f972f8a9d1ee5b9f2bb99777c1c87
+<hr />
+</div>
+<div id="analysis" class="section level2">
+<h2>Analysis</h2>
+<p>To make inferences of the relationships between mental health and five variables including obesity, diabetes, drinking, cancer and sleeping which represent the mean prevalence in each cities in the United States in our dataset, we build five linear regression models and plot them. Based on the observations from the five regression models, diabetes and obesity have positive association with mental health. For diabetes, we can see from the plot that there is an positive linear relationship and the regression model is <span class="math inline">\(Y = 0.5985X + 6.7551\)</span>. As for the obesity, we can also see a salient positive relationship and the linear regression model is <span class="math inline">\(Y = 0.26779X + 4.97108\)</span>. The positive relationships of diabetes and mental health and obesity and mental health implies that people who with obesity and diabetes are more likely to have mental health issues. The sleeping variable in our model and plot represents the prevalence of sleeping less than 7 hours, we can see a positive linear relationship between mental health and sleeping which means the cities with more people sleeping less than 7 hours will be more likely to have mental health issues. And the model is <span class="math inline">\(Y_i = 0.33366X + 1.00842\)</span></p>
+<p>However, from the plots of drinking and cancer, we can see a slightly negative relationship. To test if the negative relationship between mental health and drinking is significant or not, we perform a t-test: By using 0.05 significance level, p-value is less than 2e-16, so we can conclude that the negative relationship between mental health and drinking is significant and the regression model is <span class="math inline">\(Y = -0.30765X + 0.03355\)</span>. For the relationship between mental health and cancer, p-value is 0.00149 &lt; 0.05 so we can also conclude that the negative relationship is significant.</p>
 </div>
 
 
