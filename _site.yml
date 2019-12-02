@@ -8,7 +8,7 @@ navbar:
     - text: "Maps"
       href: plots.html
     - text: "Linear Model"
-      href: regression.html
+      href: https://yucongjiang.shinyapps.io/p8105_final_projectgithub/
     - text: "Project Report"
       href: project_report.html
     - icon: fa-envelope fa-lg
