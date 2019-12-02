@@ -81,7 +81,7 @@ First, we read in the dataset, named it as `total_data` and filtered the variabl
 
 To make inferences of the relationships between mental health and five variables including obesity, diabetes, drinking, cancer and sleeping which represent the mean prevalence in each cities in the United States in our dataset, we build five linear regression models and plot them. Based on the observations from the five regression models, diabetes, obesity and sleeping have positive association with mental health. drinking and cancer have negative association with mental health. 
 
-```{r setup, include=FALSE}
+```{r setup}
 library(flexdashboard)
 library(tidyverse)
 library(patchwork)
@@ -91,7 +91,7 @@ library(viridis)
 library(plotly)
 ```
 
-```{r, message=FALSE, echo= FALSE}
+```{r}
 # read in the data
 mental = read.csv("./data/health data.csv")%>% 
   janitor::clean_names() %>% 
@@ -102,7 +102,7 @@ mental_data = mental %>%
   filter(measure == "mental health")  
 ```
 
-```{r, message=FALSE, echo=FALSE, warning=FALSE}
+```{r}
 #deal with data
 total_data = mental %>% 
   pivot_wider(names_from = measure, city_name, values_from = data_value) %>% 
@@ -116,7 +116,7 @@ total_data = mental %>%
 
 
 ### Drink
-```{r, warning=FALSE, echo=FALSE}
+```{r}
 # Drink 
 drink_lm = lm(total_data$mental_health ~ total_data$drink, total_data)
 
@@ -137,7 +137,7 @@ From the plots of drinking, we can see a slightly negative relationship. To test
 
 
 ### Diabetes
-```{r, warning=FALSE, echo=FALSE}
+```{r}
 # Diabetes
 diabetes_lm = lm(total_data$mental_health ~ total_data$diabetes)
 diabetes_plot = 
@@ -155,7 +155,7 @@ summary(diabetes_lm)
 For diabetes, we can see from the plot that there is an positive linear relationship and the regression model is $Y = 0.5985X + 6.7551$. The positive relationship implies people with diabetes will be more likely to have mental health issues. 
 
 ### Cancer
-```{r, warning=FALSE, echo=FALSE}
+```{r}
 # Cancer
 cancer_lm = lm(total_data$mental_health ~ total_data$cancer)
 
@@ -175,7 +175,7 @@ From the plot, we can also see a slightly negative association. For the relation
 
 
 ### Obesity
-```{r, warning=FALSE, echo=FALSE}
+```{r}
 # Obesity
 obe_lm = lm(total_data$mental_health ~ total_data$obesity)
 
@@ -195,7 +195,7 @@ summary(obe_lm)
 As for the obesity, we can also see a salient positive relationship and the linear regression model is $Y = 0.26779X + 4.97108$. The positive relationship implies people with obesity will be more likely to have mental health issues. 
 
 ### Sleeping
-```{r, message=FALSE, echo=FALSE}
+```{r}
 #sleeping
 sleep_lm = lm(total_data$mental_health ~ total_data$sleeping)
 
