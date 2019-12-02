@@ -50,7 +50,8 @@ drink_plot =
   plot_ly(x = total_data$drink, y = total_data$mental_health, 
        type = "scatter",
         mode = "markers",alpha = .5) %>% 
-  add_lines(x = total_data$drink, y = fitted(drink_lm))
+  add_lines(x = total_data$drink, y = fitted(drink_lm)) %>%
+  layout(colorway = c('#F5B7B1', '#B03A2E'))
 
 
 drink_plot
@@ -65,10 +66,11 @@ summary(drink_lm)
 diabetes_lm = lm(total_data$mental_health ~ total_data$diabetes)
 diabetes_plot = 
   plot_ly(x = total_data$diabetes, y = total_data$mental_health, 
-       type = "scatter",  color =  "Yellow",
+       type = "scatter",
         mode = "markers",alpha = .5) %>% 
-  add_lines(x = total_data$diabetes, y = fitted(diabetes_lm))
-#diabetes_lm = lm(total_data$mental_health ~ total_data$diabetes)
+  add_lines(x = total_data$diabetes, y = fitted(diabetes_lm)) %>%
+  layout(colorway = c('#BB8FCE', '#7D3C98'))
+
 
 diabetes_plot
 summary(diabetes_lm)
@@ -82,11 +84,11 @@ cancer_lm = lm(total_data$mental_health ~ total_data$cancer)
 
 cancer_plot = 
   plot_ly(x = total_data$cancer, y = total_data$mental_health, 
-       type = "scatter", color =  "Green",
+       type = "scatter", 
         mode = "markers",alpha = .5) %>% 
-  add_lines(x = total_data$cancer, y = fitted(cancer_lm))
+  add_lines(x = total_data$cancer, y = fitted(cancer_lm)) %>%
+  layout(colorway = c('#A3E4D7', '#148F77'))
 
-#cancer_lm = lm(total_data$mental_health ~ total_data$cancer)
 
 cancer_plot
 summary(cancer_lm)
@@ -102,9 +104,10 @@ obe_plot =
   plot_ly(x = total_data$obesity, y = total_data$mental_health, 
        type = "scatter", 
         mode = "markers",alpha = .5) %>% 
-    add_lines(x = total_data$obesity, y = fitted(obe_lm))
+    add_lines(x = total_data$obesity, y = fitted(obe_lm)) %>%
+  layout(colorway = c('#F9E79F', '#D4AC0D'))
 
-#obe_lm = lm(total_data$mental_health ~ total_data$obesity)
+
 
 obe_plot
 summary(obe_lm)
@@ -120,8 +123,8 @@ sleep_plot =
   plot_ly(x = total_data$sleeping, y = total_data$mental_health, 
        type = "scatter", 
         mode = "markers",alpha = .5) %>% 
-  add_lines(x = total_data$sleeping, y = fitted(sleep_lm))
-#sleep_lm = lm(total_data$mental_health ~ total_data$sleeping)
+  add_lines(x = total_data$sleeping, y = fitted(sleep_lm)) %>%
+  layout(colorway = c('#AED6F1', '#2E86C1'))
 
 sleep_plot
 summary(sleep_lm)
