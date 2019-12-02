@@ -57,5 +57,13 @@ We tried to figure out the possible causes of bad mental health or mental health
 
 The data
 
+***
+
+## Analysis 
+
+To make inferences of the relationships between mental health and five variables including obesity, diabetes, drinking, cancer and sleeping which represent the mean prevalence in each cities in the United States in our dataset, we build five linear regression models and plot them. Based on the observations from the five regression models, diabetes and obesity have positive association with mental health. For diabetes, we can see from the plot that there is an positive linear relationship and the regression model is $Y = 0.5985X + 6.7551$. As for the obesity, we can also see a salient positive relationship and the linear regression model is $Y = 0.26779X + 4.97108$. The positive relationships of diabetes and mental health and obesity and mental health implies that people who with obesity and diabetes are more likely to have mental health issues. The sleeping variable in our model and plot represents the prevalence of sleeping less than 7 hours, we can see a positive linear relationship between mental health and sleeping which means the cities with more people sleeping less than 7 hours will be more likely to have mental health issues. And the model is $Y_i = 0.33366X + 1.00842$  
+
+However, from the plots of drinking and cancer, we can see a slightly negative relationship. To test if the negative relationship between mental health and drinking is significant or not, we perform a t-test: By using 0.05 significance level, p-value is less than 2e-16, so we can conclude that the negative relationship between mental health and drinking is significant and the regression model is $Y = -0.30765X + 0.03355$. For the relationship between mental health and cancer, p-value is 0.00149 < 0.05 so we can also conclude that the negative relationship is significant. 
+
 
 
