@@ -121,8 +121,8 @@ drink_lm = lm(total_data$mental_health ~ total_data$drink, total_data)
 drink_plot = 
   plot_ly(x = total_data$drink, y = total_data$mental_health, 
        type = "scatter",
-        mode = "markers",alpha = .5) %>% 
-  add_lines(x = total_data$drink, y = fitted(drink_lm)) %>%
+        mode = "markers",alpha = .5, name = "distribution") %>% 
+  add_lines(x = total_data$drink, y = fitted(drink_lm), name = "linear model") %>%
   layout(title = 'Binge Drink', colorway = c('#F5B7B1', '#B03A2E')) 
 
 
@@ -140,8 +140,8 @@ diabetes_plot =
   plot_ly(x = total_data$diabetes, y = total_data$mental_health, 
        type = "scatter",
         mode = "markers",alpha = .5) %>% 
-  add_lines(x = total_data$diabetes, y = fitted(diabetes_lm)) %>%
-  layout(title = 'Diabetes', colorway = c('#BB8FCE', '#7D3C98'))
+  add_lines(x = total_data$diabetes, y = fitted(diabetes_lm), name = "distribution") %>%
+  layout(title = 'Diabetes', colorway = c('#BB8FCE', '#7D3C98'), name = "linear model")
 
 
 diabetes_plot
@@ -157,9 +157,9 @@ cancer_lm = lm(total_data$mental_health ~ total_data$cancer)
 cancer_plot = 
   plot_ly(x = total_data$cancer, y = total_data$mental_health, 
        type = "scatter", 
-        mode = "markers",alpha = .5) %>% 
+        mode = "markers",alpha = .5, name = "distribution") %>% 
   add_lines(x = total_data$cancer, y = fitted(cancer_lm)) %>%
-  layout(title = 'Cancer', colorway = c('#A3E4D7', '#148F77'))
+  layout(title = 'Cancer', colorway = c('#A3E4D7', '#148F77'), name = "linear model")
 
 
 cancer_plot
@@ -176,9 +176,9 @@ obe_lm = lm(total_data$mental_health ~ total_data$obesity)
 obe_plot = 
   plot_ly(x = total_data$obesity, y = total_data$mental_health, 
        type = "scatter", 
-        mode = "markers",alpha = .5) %>% 
+        mode = "markers",alpha = .5, name = "distribution") %>% 
     add_lines(x = total_data$obesity, y = fitted(obe_lm)) %>%
-  layout(title = 'Obesity',colorway = c('#F9E79F', '#D4AC0D'))
+  layout(title = 'Obesity',colorway = c('#F9E79F', '#D4AC0D'), name = "linear model")
 
 
 
@@ -195,9 +195,9 @@ sleep_lm = lm(total_data$mental_health ~ total_data$sleeping)
 sleep_plot = 
   plot_ly(x = total_data$sleeping, y = total_data$mental_health, 
        type = "scatter", 
-        mode = "markers",alpha = .5) %>% 
+        mode = "markers",alpha = .5, name = "distribution") %>% 
   add_lines(x = total_data$sleeping, y = fitted(sleep_lm)) %>%
-  layout(title = 'Sleeping', colorway = c('#AED6F1', '#2E86C1'))
+  layout(title = 'Sleeping', colorway = c('#AED6F1', '#2E86C1'), name = "linear model")
 
 sleep_plot
 ```
