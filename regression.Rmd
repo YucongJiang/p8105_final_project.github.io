@@ -1,5 +1,5 @@
 ---
-title: "Regression between Mental Health and Physical Health"
+title: "Linear Regression between Mental Health and Physical Health"
 output: 
   html_document:
     toc: true
@@ -28,7 +28,7 @@ mental_data = mental %>%
   filter(measure == "mental health")  
 ```
 
-```{r}
+```{r, message=FALSE, echo=FALSE, warning=FALSE}
 #deal with data
 total_data = mental %>% 
   pivot_wider(names_from = measure, city_name, values_from = data_value) %>% 
@@ -44,12 +44,14 @@ total_data = mental %>%
 ### Drink
 ```{r, warning=FALSE, echo=FALSE}
 # Drink 
+drink_lm = lm(total_data$mental_health ~ total_data$drink, total_data)
 
 drink_plot = 
   plot_ly(x = total_data$drink, y = total_data$mental_health, 
        type = "scatter",
-        mode = "markers",alpha = .5)
-drink_lm = lm(total_data$mental_health ~ total_data$drink, total_data)
+        mode = "markers",alpha = .5) %>% 
+  add_lines(x = total_data$drink, y = fitted(drink_lm))
+
 
 drink_plot
 summary(drink_lm)
@@ -60,11 +62,13 @@ summary(drink_lm)
 ### Diabetes
 ```{r, warning=FALSE, echo=FALSE}
 # Diabetes
+diabetes_lm = lm(total_data$mental_health ~ total_data$diabetes)
 diabetes_plot = 
   plot_ly(x = total_data$diabetes, y = total_data$mental_health, 
        type = "scatter",  color =  "Yellow",
-        mode = "markers",alpha = .5)
-diabetes_lm = lm(total_data$mental_health ~ total_data$diabetes)
+        mode = "markers",alpha = .5) %>% 
+  add_lines(x = total_data$diabetes, y = fitted(diabetes_lm))
+#diabetes_lm = lm(total_data$mental_health ~ total_data$diabetes)
 
 diabetes_plot
 summary(diabetes_lm)
@@ -74,11 +78,15 @@ summary(diabetes_lm)
 ### Cancer
 ```{r, warning=FALSE, echo=FALSE}
 # Cancer
+cancer_lm = lm(total_data$mental_health ~ total_data$cancer)
+
 cancer_plot = 
   plot_ly(x = total_data$cancer, y = total_data$mental_health, 
-       type = "scatter",
-        mode = "markers",alpha = .5) 
-cancer_lm = lm(total_data$mental_health ~ total_data$cancer)
+       type = "scatter", color =  "Green",
+        mode = "markers",alpha = .5) %>% 
+  add_lines(x = total_data$cancer, y = fitted(cancer_lm))
+
+#cancer_lm = lm(total_data$mental_health ~ total_data$cancer)
 
 cancer_plot
 summary(cancer_lm)
@@ -88,11 +96,15 @@ summary(cancer_lm)
 ### Obesity
 ```{r, warning=FALSE, echo=FALSE}
 # Obesity
+obe_lm = lm(total_data$mental_health ~ total_data$obesity)
+
 obe_plot = 
   plot_ly(x = total_data$obesity, y = total_data$mental_health, 
        type = "scatter", 
-        mode = "markers",alpha = .5)
-obe_lm = lm(total_data$mental_health ~ total_data$obesity)
+        mode = "markers",alpha = .5) %>% 
+    add_lines(x = total_data$obesity, y = fitted(obe_lm))
+
+#obe_lm = lm(total_data$mental_health ~ total_data$obesity)
 
 obe_plot
 summary(obe_lm)
@@ -100,19 +112,22 @@ summary(obe_lm)
 
 
 ### Sleeping
-```{r}
+```{r, message=FALSE, echo=FALSE}
 #sleeping
+sleep_lm = lm(total_data$mental_health ~ total_data$sleeping)
+
 sleep_plot = 
   plot_ly(x = total_data$sleeping, y = total_data$mental_health, 
        type = "scatter", 
-        mode = "markers",alpha = .5)
-sleep_lm = lm(total_data$mental_health ~ total_data$sleeping)
+        mode = "markers",alpha = .5) %>% 
+  add_lines(x = total_data$sleeping, y = fitted(sleep_lm))
+#sleep_lm = lm(total_data$mental_health ~ total_data$sleeping)
 
 sleep_plot
 summary(sleep_lm)
 ```
 
-**Analysis:**
+### Analysis
 
 To make inferences of the relationships between mental health and four factors including obesity, diabetes, drinking and cancer, we build four linear regression models and plot them. Based on the observations from the four regression models, diabetes and obesity have positive association with mental health. For diabetes, we can see from the plot that there is an positive linear relationship and the regression model is $Y = 0.5985X + 6.7551$. As for the obesity, we can also see a salient positive relationship and the linear regression model is $Y = 0.26779X + 4.97108$. The positive relationships of diabetes and mental health and obesity and mental health implies that people who with obesity and diabetes are more likely to have mental health issues. 
 
