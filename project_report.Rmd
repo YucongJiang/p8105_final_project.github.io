@@ -81,7 +81,7 @@ First, we read in the dataset, named it as `total_data` and filtered the variabl
 
 To make inferences of the relationships between mental health and five variables including obesity, diabetes, drinking, cancer and sleeping which represent the mean prevalence in each cities in the United States in our dataset, we build five linear regression models and plot them. Based on the observations from the five regression models, diabetes, obesity and sleeping have positive association with mental health. drinking and cancer have negative association with mental health. 
 
-```{r setup, warning=FALSE}
+```{r setup, warning=FALSE, message=FALSE}
 library(flexdashboard)
 library(tidyverse)
 library(patchwork)
@@ -91,7 +91,7 @@ library(viridis)
 library(plotly)
 ```
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, message=FALSE}
 # read in the data
 mental = read.csv("./data/health data.csv")%>% 
   janitor::clean_names() %>% 
@@ -102,7 +102,7 @@ mental_data = mental %>%
   filter(measure == "mental health")  
 ```
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, message=FALSE}
 #deal with data
 total_data = mental %>% 
   pivot_wider(names_from = measure, city_name, values_from = data_value) %>% 
