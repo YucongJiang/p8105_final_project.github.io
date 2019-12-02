@@ -28,7 +28,7 @@ We utilized the [500 Cities: Local Data for Better Health, 2018 release](https:/
 
 We were interested in visualizing the mental health situations over United States, so we filtered measure variables related to mental health and possible causes of mental health problems, including diabetes, obesity, cancer, binge drink and sleeping hours. 
 
-Data related to socioeconomic situations of all the states in the United States were also used in analysis the cause of mental health problems.
+Data about [U.S. states and territories' income](https://en.wikipedia.org/wiki/List_of_U.S._states_and_territories_by_income), [U.S. states and territories' educational attainment](https://en.wikipedia.org/wiki/List_of_U.S._states_and_territories_by_educational_attainment) and [U.S. population race](https://www.census.gov/newsroom/facts-for-features/2016/cb16-ff01.html) were also used in analyzing the cause of mental health problems.
 
 The current dataset includes prevalence estimates mainly in 2016.
  
