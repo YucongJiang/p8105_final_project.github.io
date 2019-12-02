@@ -5,16 +5,20 @@ date: "12/2/2019"
 output: github_document
 ---
 
-# Motivation
+***
 
-## Basic Knowlegde about Mental Health
+## Motivation
+
+### Basic Knowlegde about Mental Health
 
  - Mental health is an important component of overall health.
  - Can increases the risk for many types of physical health problems.
  - Presence of chronic physical health problems can also increase the risk for mental health problems.
  - Over 45 million Americans - almost 20% - are experiencing a mental illness. 57% of adults with a mental illness receive no treatment.
  
+*Here's the map of bad mental health prevalence*
 
+![](map.png)
  
 ## 
 
