@@ -110,8 +110,6 @@ total_data = mental %>%
   drop_na() %>% 
   group_by(city_name) %>% 
   summarize(obesity = mean(obesity), drink = mean(drink), diabetes = mean(diabetes), mental_health = mean(`mental health`), cancer = mean(cancer), sleeping = mean(sleeping))
-
-
 ```
 
 
@@ -129,8 +127,6 @@ drink_plot =
 
 
 drink_plot
-summary(drink_lm)
-
 ```
 
 From the plots of drinking, we can see a slightly negative relationship. To test if the negative relationship between mental health and drinking is significant or not, we perform a t-test: By using 0.05 significance level, p-value is less than 2e-16, so we can conclude that the negative relationship between mental health and drinking is significant and the regression model is $Y = -0.30765X + 0.03355$.
@@ -149,7 +145,6 @@ diabetes_plot =
 
 
 diabetes_plot
-summary(diabetes_lm)
 ```
 
 For diabetes, we can see from the plot that there is an positive linear relationship and the regression model is $Y = 0.5985X + 6.7551$. The positive relationship implies people with diabetes will be more likely to have mental health issues. 
@@ -168,7 +163,6 @@ cancer_plot =
 
 
 cancer_plot
-summary(cancer_lm)
 ```
 
 From the plot, we can also see a slightly negative association. For the relationship between mental health and cancer, p-value is 0.00149 < 0.05 so we can also conclude that the negative relationship is significant. The regression model is $Y_i = -0.3275X + 14.7374$
@@ -189,7 +183,6 @@ obe_plot =
 
 
 obe_plot
-summary(obe_lm)
 ```
 
 As for the obesity, we can also see a salient positive relationship and the linear regression model is $Y = 0.26779X + 4.97108$. The positive relationship implies people with obesity will be more likely to have mental health issues. 
@@ -207,7 +200,35 @@ sleep_plot =
   layout(title = 'Sleeping', colorway = c('#AED6F1', '#2E86C1'))
 
 sleep_plot
-summary(sleep_lm)
 ```
 
 The sleeping variable in our model and plot represents the prevalence of sleeping less than 7 hours, we can see a positive linear relationship between mental health and sleeping which means the cities with more people sleeping less than 7 hours will be more likely to have mental health issues. And the model is $Y_i = 0.33366X + 1.00842$ 
+
+
+### Geographic
+
+We used `heatmap` and `plotly` to draw the distribution of bad mental health in U.S. states and cities. The distribution of mental health was in similar pattern with that of sleepin less than 7 hours.
+
+### Income
+
+
+***
+
+## Discussion
+
+From the analysis, we gained some ideas about the cause of bad mental health.
+
+ - In the risk factors that we were interested in, diabetes, obesity and sleeping less than 7 hours have positive relationship with bad mental health. This indicates that chronic diseas are more likely to cause mental health disease. The economic pressure and poor physical conditions caused by chronic diseas might lead to bad mood of the patients and eventually cause a bad mental health and even mental health disease.
+ 
+ - Binge drinking, cancer and income are inversely associated with bad mental health. Drinking might be able to release stress, which can enable people to keep a good mood. Individuals who have high income may have less socioeconomic pressure and are more cared about their mental health conditions.
+ 
+ - As for level of education,we can see from the results that a high rate of high-school and college education are inversely associated with bad mental health. Thus a higher education level indicates that the person has a better way to adjust the mental condition.
+ 
+ - In the aspect of race. It can be discovered that asian and indian have negative relationship with bad mental health while the black has a positive relationship with bad mental health prevalence. This shows that racial discrimination experience that different populations have been through have an effect on the mental health conditions of people.
+ 
+ 
+ 
+ 
+ 
+ 
+
