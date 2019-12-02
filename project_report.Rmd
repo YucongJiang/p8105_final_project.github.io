@@ -2,6 +2,7 @@
 title: "Linear Regression between Mental Health and Physical Health"
 output: 
   html_document:
+    code_folding: "hide"
     toc: true
     toc_float: true
     theme: flatly
@@ -75,6 +76,8 @@ Outcome that we were interested in is:
 ***
 
 ## Analysis 
+
+First, we read in the dataset, named it as `total_data` and filtered the variables that we need.
 
 To make inferences of the relationships between mental health and five variables including obesity, diabetes, drinking, cancer and sleeping which represent the mean prevalence in each cities in the United States in our dataset, we build five linear regression models and plot them. Based on the observations from the five regression models, diabetes and obesity have positive association with mental health. For diabetes, we can see from the plot that there is an positive linear relationship and the regression model is $Y = 0.5985X + 6.7551$. As for the obesity, we can also see a salient positive relationship and the linear regression model is $Y = 0.26779X + 4.97108$. The positive relationships of diabetes and mental health and obesity and mental health implies that people who with obesity and diabetes are more likely to have mental health issues. The sleeping variable in our model and plot represents the prevalence of sleeping less than 7 hours, we can see a positive linear relationship between mental health and sleeping which means the cities with more people sleeping less than 7 hours will be more likely to have mental health issues. And the model is $Y_i = 0.33366X + 1.00842$  
 
