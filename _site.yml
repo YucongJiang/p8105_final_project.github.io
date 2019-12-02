@@ -10,7 +10,7 @@ navbar:
     - text: "Linear Model"
       href: regression.html
     - text: "Project Report"
-      href: plots.html
+      href: project_report.html
     - icon: fa-envelope fa-lg
       href: mailto:<wangyn827@gmail.com>
     - icon: fa-github fa-lg
