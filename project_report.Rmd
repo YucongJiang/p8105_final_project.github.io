@@ -1,9 +1,14 @@
 ---
-title: "Project Report"
-author: "YucongJiang, WeiRan Zhang, Qi Lu, Yuning Wang, Aiming Liu"
-date: "12/2/2019"
-output: github_document
+title: "Linear Regression between Mental Health and Physical Health"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: flatly
 ---
+
+*Yuning Wang (yw3438); Aiming Liu (al3998); Qi Lu (ql2370); Yucong Jiang (yj2581); WeiRan Zhang (wz2506)*
+*12/02/2019*
 
 ***
 
@@ -33,5 +38,12 @@ output: github_document
  - visualizing the distribution of risk factors and bad mental health prevalence across United States.
  
  - Giving suggestions about reducing prevelance of bad mental health
+
+***
+
+## Group Work
+
+We used 
+
 
 
