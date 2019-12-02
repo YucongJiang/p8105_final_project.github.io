@@ -2,13 +2,13 @@
 title: "Linear Regression between Mental Health and Physical Health"
 output: 
   html_document:
-    code_folding: "hide"
+    code_folding: hide
     toc: true
     toc_float: true
     theme: flatly
 ---
 
-*Yuning Wang (yw3438); Aiming Liu (al3998); Qi Lu (ql2370); Yucong Jiang (yj2581); WeiRan Zhang (wz2506)*
+*Yuning Wang (yw3438); Aiming Liu (al3998); Qi Lu (ql2370); Yucong Jiang (yj2581); Weiran Zhang (wz2506)*
 *12/02/2019*
 
 ***
