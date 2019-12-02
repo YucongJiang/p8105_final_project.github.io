@@ -36,9 +36,11 @@ The current dataset includes prevalence estimates mainly in 2016.
 
 # Findings
 
-The risk factors of mental health problems according to the CDC include experiences related to other ongoing (chronic) medical condition. From the results of our analysis, diabetes and obesity have a positive association with mental health problems. However, cancer has a negative association with bad mental health.
+The risk factors of mental health problems include experiences related to other ongoing (chronic) medical condition and unhealthy behaviors. From the results of our analysis, diabetes，obesity and sleeping less than 7 hours have a positive association with mental health problems. However, cancer have a negative associations with bad mental health.
 
-Using alcohol is also closely related to mental health conditions according to CDC. Results show that alcohol usage has a negative relationship with mental health problems. Household income also has a negative relationship with bad mental health. However, sleeping has a positive relationship with bad mental health prevalence.
+Using alcohol is also closely related to mental health conditions according to CDC. Results show that alcohol usage has a negative relationship with mental health problems. 
+
+Social factors like household income and education levels also have  negative relationships with bad mental health. The relationship between mental health and race depends on ethnicities.
 
 Maps related to prevalence of bad mental health indicated that mental health conditions in middle and western U.S. were better than eastern U.S.. We observed that the sleeping hours of people in the east of United States are less than that of the west. The prevalence of obesity is higher in Mississippi and Michigan, but the prevalence of cancer has little differences among all the cities.
 
