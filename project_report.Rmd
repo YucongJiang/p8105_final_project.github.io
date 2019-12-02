@@ -1,9 +1,14 @@
 ---
-title: "project report"
-author: "YucongJiang, WeiRan Zhang, Qi Lu, Yuning Wang, Aiming Liu"
-date: "12/2/2019"
-output: github_document
+title: "Linear Regression between Mental Health and Physical Health"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: flatly
 ---
+
+*Yuning Wang (yw3438); Aiming Liu (al3998); Qi Lu (ql2370); Yucong Jiang (yj2581); WeiRan Zhang (wz2506)*
+*12/02/2019*
 
 ***
 
@@ -20,6 +25,37 @@ output: github_document
 
 ![](map.png)
  
-## 
+*The prevalence of mental illness among U.S. adults(2017)*
+
+![](prevalence of mental illness.png)
+ 
+### Goals of project
+
+ - Understanding the risk factors for bad mental health
+ 
+ - Visualizing correlation of the risk factors and bad mental health
+ 
+ - visualizing the distribution of risk factors and bad mental health prevalence across United States.
+ 
+ - Giving suggestions about reducing prevelance of bad mental health
+
+***
+
+## Questions
+
+We tried to figure out the possible causes of bad mental health or mental health illness. We were also interested in visualizing the distribution of risk factors and mental illness prevalence prevalence in the United states, by state and by cities. In addition, we also sought to figure out the correlations between bad mental health and chronic disease and bad living behaviors. As a result, the questions were as followed:
+
+  - What are the risk factors of bad mental health? What are the correlations between the outcome and the factors? How to visualize them?
+  
+  - What are the distributions of bad mental health and risk factors in different states and cities in the United States? How to visualize them?
+  
+  - Are there any ways for us to reduce the prevalence of bad mental health?
+  
+***
+
+## Data
+
+The data
+
 
 
