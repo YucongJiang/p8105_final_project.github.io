@@ -51,7 +51,7 @@ drink_plot =
        type = "scatter",
         mode = "markers",alpha = .5) %>% 
   add_lines(x = total_data$drink, y = fitted(drink_lm)) %>%
-  layout(colorway = c('#F5B7B1', '#B03A2E'))
+  layout(title = 'Binge Drink', colorway = c('#F5B7B1', '#B03A2E')) 
 
 
 drink_plot
@@ -69,7 +69,7 @@ diabetes_plot =
        type = "scatter",
         mode = "markers",alpha = .5) %>% 
   add_lines(x = total_data$diabetes, y = fitted(diabetes_lm)) %>%
-  layout(colorway = c('#BB8FCE', '#7D3C98'))
+  layout(title = 'Diabetes', colorway = c('#BB8FCE', '#7D3C98'))
 
 
 diabetes_plot
@@ -87,7 +87,7 @@ cancer_plot =
        type = "scatter", 
         mode = "markers",alpha = .5) %>% 
   add_lines(x = total_data$cancer, y = fitted(cancer_lm)) %>%
-  layout(colorway = c('#A3E4D7', '#148F77'))
+  layout(title = 'Cancer', colorway = c('#A3E4D7', '#148F77'))
 
 
 cancer_plot
@@ -105,7 +105,7 @@ obe_plot =
        type = "scatter", 
         mode = "markers",alpha = .5) %>% 
     add_lines(x = total_data$obesity, y = fitted(obe_lm)) %>%
-  layout(colorway = c('#F9E79F', '#D4AC0D'))
+  layout(title = 'Obesity',colorway = c('#F9E79F', '#D4AC0D'))
 
 
 
@@ -124,7 +124,7 @@ sleep_plot =
        type = "scatter", 
         mode = "markers",alpha = .5) %>% 
   add_lines(x = total_data$sleeping, y = fitted(sleep_lm)) %>%
-  layout(colorway = c('#AED6F1', '#2E86C1'))
+  layout(title = 'Sleeping', colorway = c('#AED6F1', '#2E86C1'))
 
 sleep_plot
 summary(sleep_lm)
