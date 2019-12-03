@@ -114,7 +114,7 @@ total_data = mental %>%
 
 
 ### Drink
-```{r}
+```{r warning=FALSE, message=FALSE}
 # Drink 
 drink_lm = lm(total_data$mental_health ~ total_data$drink, total_data)
 
@@ -133,7 +133,7 @@ From the plots of drinking, we can see a slightly negative relationship. To test
 
 
 ### Diabetes
-```{r}
+```{r warning=FALSE, message=FALSE}
 # Diabetes
 diabetes_lm = lm(total_data$mental_health ~ total_data$diabetes)
 diabetes_plot = 
@@ -150,7 +150,7 @@ diabetes_plot
 For diabetes, we can see from the plot that there is an positive linear relationship and the regression model is $Y = 0.5985X + 6.7551$. The positive relationship implies people with diabetes will be more likely to have mental health issues. 
 
 ### Cancer
-```{r}
+```{r warning=FALSE, message=FALSE}
 # Cancer
 cancer_lm = lm(total_data$mental_health ~ total_data$cancer)
 
@@ -169,7 +169,7 @@ From the plot, we can also see a slightly negative association. For the relation
 
 
 ### Obesity
-```{r}
+```{r warning=FALSE, message=FALSE}
 # Obesity
 obe_lm = lm(total_data$mental_health ~ total_data$obesity)
 
@@ -188,7 +188,7 @@ obe_plot
 As for the obesity, we can also see a salient positive relationship and the linear regression model is $Y = 0.26779X + 4.97108$. The positive relationship implies people with obesity will be more likely to have mental health issues. 
 
 ### Sleeping
-```{r}
+```{r warning=FALSE, message=FALSE}
 #sleeping
 sleep_lm = lm(total_data$mental_health ~ total_data$sleeping)
 
