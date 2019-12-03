@@ -216,8 +216,7 @@ plot_income <- plot_ly(x = state_stat$income, y = state_stat$mean_crd,
                        type = "scatter", 
                        mode = "markers",alpha = .5, name = "point") %>% 
   add_lines(x = state_stat$income, y = fitted(income_lm), name = "line") %>%
-  layout(colorway = c('#AED6F1', '#2E86C1')) +
-  theme_bw()
+  layout(colorway = c('#AED6F1', '#2E86C1')) 
 
 ggplotly(plot_income)
 ```
