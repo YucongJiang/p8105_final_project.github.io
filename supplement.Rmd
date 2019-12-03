@@ -1,0 +1,96 @@
+---
+title: "Supplement"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: flatly
+---
+```{r setup, include=FALSE}
+
+# install.packages("usmap")
+library(usmap)
+library(flexdashboard)
+library(tidyverse)
+library(patchwork)
+library(ggridges)
+library(viridis)
+
+library(plotly)
+```
+
+## Heatmap of the prevalence of bad mental health in U.S.
+
+```{r heatmap, echo = FALSE, message = FALSE}
+state_stat <- read_csv("data/state_stat.csv")
+
+plot_usmap(data = state_stat, values = "mean_crd") +
+  scale_fill_continuous(
+    low = "white", high = "red", name = "Crude Prevalence (2016)"
+    )
+```
+
+From this map we can see that people in Hawaii possess the best mental health, while people in the Great Lakes region suffer from a relatively worse mental health. The highest prevalence of bad mental health is in Ohio, which is about 65 percent more than that of Hawaii. 
+
+## Linear model (supplement)
+
+```{r lm_1, echo = FALSE}
+income_lm <- lm(mean_crd ~ income, data = state_stat)
+
+plot_income <- plot_ly(x = state_stat$income, y = state_stat$mean_crd, 
+                       type = "scatter", 
+                       mode = "markers",alpha = .5, name = "point") %>% 
+  add_lines(x = state_stat$income, y = fitted(income_lm), name = "line") %>%
+  layout(colorway = c('#AED6F1', '#2E86C1'))
+
+ggplotly(plot_income)
+```
+
+From this plot we can see that the association between median household income and mental health is significant, i.e. there's a trend that the higher the household income a state has, the less likely will people in this state have mental illness.
+
+```{r lm_2, echo = FALSE}
+plot_education <- state_stat %>% select(state, mean_crd, high_school, bachelor, advanced) %>% 
+  pivot_longer(
+    c("high_school", "bachelor", "advanced"),
+    names_to = "level",
+    values_to = "proportion"
+  ) %>% mutate(level = factor(level)) %>% 
+  ggplot(aes(x = proportion, y = mean_crd)) +geom_point() +geom_smooth(method = lm) +
+  facet_grid(.~level) +
+  labs(
+    title = "Association between Education Attainment and Mental Health Status in Each State",
+    x = "Education Attainment",
+    y = "Prevalence of Bad Mental Health"
+  )
+
+ggplotly(plot_education)
+
+# plot_edu_high <- ggplot(state_stat, aes(x = high_school, y = mean_crd)) + geom_point() + geom_smooth(method = lm)
+# plot_edu_bachelor <- ggplot(state_stat, aes(x = bachelor, y = mean_crd)) + geom_point() + geom_smooth(method = lm) + labs(y = "")
+# plot_edu_advanced <- ggplot(state_stat, aes(x = advanced, y = mean_crd)) + geom_point() + geom_smooth(method = lm) + labs(y = "")
+# plot_edu_all <- plot_edu_high + plot_edu_bachelor + plot_edu_advanced
+# ggplotly(plot_edu_all)
+```
+
+From this plot we can see that there is a significant association between penetration rate of high-school/undergraduate education and the prevalence of bad mental health. Higher penetration rate of high-school/undergraduate education indicates less probability to acquire mental disease. However, there is no significant association between proportion of advanced degress and mental health. We guess that it is because this proportion is too low to affect the statistics of whole population.
+
+```{r lm_3, echo = FALSE}
+plot_race <- state_stat %>% select(state, mean_crd, white, black, indian, asian) %>% 
+  pivot_longer(
+    c("white", "black", "indian", "asian"),
+    names_to = "race",
+    values_to = "proportion"
+  ) %>% mutate(level = factor(race)) %>% 
+  ggplot(aes(x = proportion, y = mean_crd)) +geom_point() +geom_smooth(method = lm) +
+  facet_grid(.~level) +
+  labs(
+    title = "Association between Race Population and Mental Health Status in Each State",
+    x = "Proportion of Race",
+    y = "Prevalence of Bad Mental Health"
+  )
+
+ggplotly(plot_race)
+
+```
+
+The most concering finding in this plot is that the proportion of black or African-American population is highly and positively related with the prevalence of bad mental health, which corresponds the fact of discrimination. In addition, the proportion of Indian or Asian is negatively related with the prevalence of bad mental health. These facts seem confusing. We guess that it might have been biased by other factors, such as income and education.
