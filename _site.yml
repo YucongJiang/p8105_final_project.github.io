@@ -8,9 +8,9 @@ navbar:
     - text: "Maps"
       href: plots.html
     - text: "Linear Model"
-      href: regression.html
+      href: https://yucongjiang.shinyapps.io/p8105_final_projectgithub/
     - text: "Project Report"
-      href: plots.html
+      href: project_report.html
     - icon: fa-envelope fa-lg
       href: mailto:<wangyn827@gmail.com>
     - icon: fa-github fa-lg
