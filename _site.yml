@@ -6,7 +6,7 @@ navbar:
     - text: "Analysis"
       href: analysis.html
     - text: "Maps"
-      href: plots.html
+      href: supplement.html
     - text: "Linear Model"
       href: https://yucongjiang.shinyapps.io/p8105_final_projectgithub/
     - text: "Project Report"
