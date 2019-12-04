@@ -103,8 +103,8 @@ obe_lm = lm(total_data$mental_health ~ total_data$obesity)
 obe_plot = 
   plot_ly(x = total_data$obesity, y = total_data$mental_health, 
        type = "scatter", 
-        mode = "markers",alpha = .5) %>% 
-    add_lines(x = total_data$obesity, y = fitted(obe_lm)) %>%
+        mode = "markers",alpha = .5, name = "distribution") %>% 
+    add_lines(x = total_data$obesity, y = fitted(obe_lm), name = "lm") %>%
   layout(title = 'Obesity',colorway = c('#F9E79F', '#D4AC0D'))
 
 
