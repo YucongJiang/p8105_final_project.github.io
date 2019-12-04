@@ -4,6 +4,19 @@ library(broom)
 library(shiny)
 library(plotly)
 
+##############################################
+#                                            #
+#  Use shiny to build an interactive page    #
+#                                            #
+##############################################
+
+# By Yucong Jiang
+
+# This page permit users to choose the x-axis to generate scatterplot and linear model.
+# The x-axis data are from 500-Cities and Wikipedia, data from 500-Cities are manipulated by Qi Lu, etc. 
+
+
+# Read data from 500-Cities
 mental = read.csv("./data/health data.csv")%>% 
   janitor::clean_names() %>% 
   as_tibble() %>% 
@@ -19,6 +32,8 @@ total_data = mental %>%
   group_by(city_name) %>% 
   summarize(obesity = mean(obesity), drink = mean(drink), diabetes = mean(diabetes), mental_health = mean(`mental health`), cancer = mean(cancer), sleeping = mean(sleeping))
 
+# We also want to show the results on the state scale
+
 total_data_state <- mental %>%
   pivot_wider(names_from = measure, state_abbr, values_from = data_value) %>% 
   unnest() %>% 
@@ -27,24 +42,14 @@ total_data_state <- mental %>%
   summarize(obesity = mean(obesity), drink = mean(drink), diabetes = mean(diabetes), mental_health = mean(`mental health`), cancer = mean(cancer), sleeping = mean(sleeping)) %>%
   rename(state = state_abbr)
 
-
-
-# mental_state <- read_csv("data/health data.csv") %>%
-#   filter(measure == "mental health" & !is.na(data_value)) %>% 
-#   group_by(state_abbr) %>% 
-#   summarize(mean_crd = mean(data_value)) %>%
-#   rename(state = state_abbr)
-# 
-# income <- read_csv("data/income.csv") %>% select(-year_2015) %>% rename(income = year_2016)
-# state_inc <- left_join(mental_state, income)
-# 
-# education <- read_csv("data/education.csv") %>% rename(state = state_abbr)
-# state_stat <- left_join(state_inc, education)
+# Read the data from Wikipedia, this csv file contains mean prevalence of bad mental health.
+# Some of work are done manually. 
+# The raw data are in the subdictionery 'data/'
 
 state_stat <- read_csv("data/state_stat.csv")
 
 # It seems that function lm() and plot_ly() don't work inside render**, which leads to weird errors. 
-# Therefore, we generate lm() and plot_ly() outside, which seems to be fool. 
+# Therefore, we generate lm() and plot_ly() outside, which seems to be long and fool. 
 
 drink_lm = lm(total_data$mental_health ~ total_data$drink)
 diabetes_lm = lm(total_data$mental_health ~ total_data$diabetes)
@@ -197,25 +202,33 @@ plot_asian <- plot_ly(x = state_stat$asian, y = state_stat$mean_crd,
   layout(colorway = c('#F5B7B1', '#B03A2E'))
 
 
+###### Start of shiny part ##################################
+
+# Learned from Gallery in the offical website
+
 ui <- fluidPage(
   
   titlePanel("Interactivity"),
   
   sidebarLayout(
     
+    # sidebar panel
     sidebarPanel(
-      
+      # Choose the x-axis
       selectInput("x_axis", "X axis", 
                   c("income", "high_school", "bachelor", "advanced", "white", "black", "indian", "asian", "drink", "diabetes", "cancer", "obesity", "sleeping")),
       
+      # Choose the scale, it is dynamic, depend on the x-axis.
       uiOutput("scale")
       
     ),
     
-    # Main panel for displaying outputs ----
+    # main panel
     mainPanel(
-      
+        # Print the plot
         plotlyOutput("scatter"),
+        
+        # Print the summary of linear model
         verbatimTextOutput("lm_summary")
       
     )
@@ -224,8 +237,12 @@ ui <- fluidPage(
 
 server <- function(input, output) {
   output$scale <- renderUI({
+    
+    # The select Button depends on the x-axis
     switch_a <- selectInput("scale", "Scale", c("State"))
     switch_b <- selectInput("scale", "Scale", c("City", "State"))
+    
+    # It seem that dplyr doesn't work here, maybe conflict with html, so I use switch.
     switch(input$x_axis,
            "income" = switch_a,
            "high_school" = switch_a,
@@ -243,7 +260,8 @@ server <- function(input, output) {
   })
   
   output$scatter <- renderPlotly({
-  
+    
+    # Use the nested switch code to control which plot to show
     switch(input$x_axis,
            "income" = plot_income,
            "high_school" = plot_high,
@@ -262,6 +280,7 @@ server <- function(input, output) {
   
   output$lm_summary <- renderPrint({
     
+    # almost the same as plot
     switch(input$x_axis,
            "income" = sum_income,
            "high_school" = sum_high,
@@ -279,4 +298,5 @@ server <- function(input, output) {
   })
 }
 
+# Build the webpage
 shinyApp(ui, server)
