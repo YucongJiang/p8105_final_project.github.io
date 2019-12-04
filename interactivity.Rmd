@@ -1,0 +1,133 @@
+---
+title: "Interactivity"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+runtime: shiny
+---
+
+# This code is discarded and won't appear in the final website.
+# We choose to use app.R to build interactive page.
+
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(broom)
+library(shiny)
+library(plotly)
+```
+
+```{r preparation, echo = FALSE}
+mental = read.csv("./data/health data.csv")%>% 
+  janitor::clean_names() %>% 
+  as_tibble() %>% 
+  filter(measure == "mental health" | measure == "obesity" | measure == "diabetes" | measure == "drink" | measure == "cancer" | measure == "sleeping") 
+
+mental_data = mental %>%
+  filter(measure == "mental health")  
+
+total_data = mental %>% 
+  pivot_wider(names_from = measure, city_name, values_from = data_value) %>% 
+  unnest() %>% 
+  drop_na() %>% 
+  group_by(city_name) %>% 
+  summarize(obesity = mean(obesity), drink = mean(drink), diabetes = mean(diabetes), mental_health = mean(`mental health`), cancer = mean(cancer), sleeping = mean(sleeping))
+
+mental_state <- read_csv("data/health data.csv") %>%
+  filter(measure == "mental health" & !is.na(data_value)) %>% 
+  group_by(state_abbr) %>% 
+  summarize(mean_crd = mean(data_value)) %>%
+  rename(state = state_abbr)
+
+income <- read_csv("data/income.csv") %>% select(-year_2015) %>% rename(income = year_2016)
+state_inc <- left_join(mental_state, income)
+
+education <- read_csv("data/education.csv") %>% rename(state = state_abbr)
+state_stat <- left_join(state_inc, education)
+
+state_stat <- read_csv("data/state_stat.csv")
+```
+
+```{r}
+text <- lm(mean_crd ~ income, data = state_stat) %>% summary()
+test <- plot_ly(x = state_stat$income, y = state_stat$mean_crd, 
+                type = "scatter",  color =  "Yellow",
+                mode = "markers",alpha = .5)
+```
+
+Column {.sidebar}
+-----------------------------------------------------------------------
+  
+
+
+<!-- #### Select X axis and scale -->
+
+```{r, echo = FALSE}
+selectInput("x_axis", "X axis", c("income", "high_school", "bachelor", "advanced", "drink", "diabetes", "cancer", "obesity", "sleeping"))
+
+```
+
+```{r, echo = FALSE}
+renderUI({
+  switch_a <- selectInput("scale", "Scale", c("State"))
+  switch_b <- selectInput("scale", "Scale", c("City"))
+  switch(input$x_axis,
+         "income" = switch_a,
+         "high_school" = switch_a,
+         "bachelor" = switch_a,
+         "advanced" = switch_a,
+         # "African-American" = switch_a,
+         # "American Indian" = switch_a,
+         # "Asian" = switch_a,
+         "drink" = switch_b, 
+         "diabetes" = switch_b, 
+         "cancer" = switch_b, 
+         "obesity" = switch_b, 
+         "sleeping" = switch_b)
+})
+```
+
+
+
+
+<!-- Column  -->
+<!-- ----------------------------------------------------------------------- -->
+
+<!-- ### GGplot -->
+  
+```{r, echo = FALSE}
+
+renderPlotly({
+  switch_b <- ggplot(total_data, aes(x = pull(total_data, input$x_axis), y = mental_health)) +
+  geom_point() + geom_smooth(method = lm)
+                      
+  switch_a <- ggplot(state_stat, aes(x = pull(state_stat, input$x_axis), y = mean_crd)) +
+  geom_point() + geom_smooth(method = lm)
+  
+  switch_a <- test
+  
+  switch(input$x_axis,
+         "income" = switch_a,
+         "high_school" = switch_a,
+         "bachelor" = switch_a,
+         "advanced" = switch_a,
+         # "African-American" = switch_a,
+         # "American Indian" = switch_a,
+         # "Asian" = switch_a,
+         "drink" = switch_b, 
+         "diabetes" = switch_b, 
+         "cancer" = switch_b, 
+         "obesity" = switch_b, 
+         "sleeping" = switch_b)
+})
+
+```
+
+
+```{r}
+renderPrint({
+  text
+})
+```
